@@ -1,0 +1,35 @@
+{
+  "name": "spolourfy",
+  "version": "4.20.69",
+  "private": true,
+  "scripts": {
+    "start": "set DEBUG=*&&node ./bin/www",
+    "webpack": "webpack-dev-server  --progress --colors --hot --inline --content-base public/ --port 6969",
+    "build": "webpack --progress ",
+    "build-prod": "npm run build&&node ./bin/www",
+    "prod": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.13.4",
+    "morgan": "~1.7.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.16.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "node-sass": "^3.10.0",
+    "sass-loader": "^4.0.2",
+    "source-map-loader": "^0.1.5",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
+  }
+}
