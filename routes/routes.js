@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
 var color = require('onecolor');
+var async = require('async');
 
 /* GET users listing. */
 router.get('/colortest', function(req, res, next) {
@@ -14,22 +15,20 @@ router.get('/colortest', function(req, res, next) {
 
   spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE')
   .then(function(data) {
-      // console.log('Artist albums', data.body);
-      // console.log(data.body.items[0].images[0].url);
-      let albums = [];
-      for (let i = 0; i < data.body.items.length; i++) {
-        console.log("i :" + i);
-          getColors(data.body.items[i].images[0].url, function(err, albumColors) {
-              albums.push({
-                  rgb: albumColors[0]._rgb,
-                  hsv: color('rgb(' + albumColors[0]._rgb[0] +', ' + albumColors[0]._rgb[1] + ', ' + albumColors[0]._rgb[2] +')').hsv(),
-                  url: data.body.items[i].images[0].url
-              });
-               if (albums.length === 20) {
-                   res.send(albums);
-               }
-          });
-      }
+    async.parallel(data.body.items.map(item => {
+        return callback => {
+            const url = item.images[0].url;
+            getColors(url, (err, albumColors) => {
+                callback(null, {
+                    rgb: albumColors[0]._rgb,
+                    hsv: color('rgb(' + albumColors[0]._rgb[0] +', ' + albumColors[0]._rgb[1] + ', ' + albumColors[0]._rgb[2] +')').hsv(),
+                    url
+                });
+            });
+        };
+    }), (err, results) => {
+        res.send(results);
+    });
 
   }, function(err) {
       console.error(err);
