@@ -16,7 +16,6 @@ class App extends React.Component {
       this.setState({
           test: 'word'
       });
-
       fetch('/api/colortest')
         .then((response) => response.json())
         .then((responseJson) => {
@@ -30,16 +29,19 @@ class App extends React.Component {
 
   render() {
     var test = "Spolourfy";
+    var sorted = this.state.colours.sort(function(x, y){return x.hsv[1] - y.hsv[1];});
+    console.log(sorted);
     return (
       <div className="App">
         <h1>{test}</h1>
         <button onClick={this.onClick.bind(this)}>Log in with Spotify</button>
         <h1>{this.state.test}</h1>
-        {this.state.colours.map(function(colour, i) {
+        {sorted.map(function(albums, i) {
+            console.log(albums.hsv[1]);
             return (
                 <div style={{float: 'left'}} key={i}>
-                    <div style={{width: 100, height: 100, backgroundColor: `rgb(${colour.colour._rgb[0]}, ${colour.colour._rgb[1]}, ${colour.colour._rgb[2]})`}} />
-                    <img src={colour.album} style={{width: 100, height:100, }}/>
+                    <div style={{width: 100, height: 100, backgroundColor: `rgb(${albums.rgb[0]}, ${albums.rgb[1]}, ${albums.rgb[2]})`}} />
+                    <img src={albums.url} style={{width: 100, height:100, }}/>
                 </div>
             );
           })}

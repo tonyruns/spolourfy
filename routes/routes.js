@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
+var color = require('onecolor');
 
 /* GET users listing. */
 router.get('/colortest', function(req, res, next) {
@@ -15,16 +16,18 @@ router.get('/colortest', function(req, res, next) {
   .then(function(data) {
       // console.log('Artist albums', data.body);
       // console.log(data.body.items[0].images[0].url);
-      let colors = [];
+      let albums = [];
       for (let i = 0; i < data.body.items.length; i++) {
+        console.log("i :" + i);
           getColors(data.body.items[i].images[0].url, function(err, albumColors) {
-              colors.push({
-                  colour: albumColors[0],
-                  album: data.body.items[i].images[0].url
+              albums.push({
+                  rgb: albumColors[0]._rgb,
+                  hsv: color('rgb(' + albumColors[0]._rgb[0] +', ' + albumColors[0]._rgb[1] + ', ' + albumColors[0]._rgb[2] +')').hsv(),
+                  url: data.body.items[i].images[0].url
               });
-              if (colors.length === 20) {
-                  res.send(colors);
-              }
+               if (albums.length === 20) {
+                   res.send(albums);
+               }
           });
       }
 
