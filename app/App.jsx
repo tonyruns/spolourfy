@@ -4,17 +4,26 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            test: ''
+        };
+    }
+
+    onClick(evt) {
+        this.setState({
+            test: 'word'
+        });
+    }
+
   render() {
     var test = "Spolourfy";
-    fetch('/api/hot')
-    .then((response) => response.json())
-    .then((responseJson) => {
-        console.log(responseJson);
-    });
     return (
       <div className="App">
         <h1>{test}</h1>
-        <button>Log in with Spotify</button>
+        <button onClick={this.onClick.bind(this)}>Log in with Spotify</button>
+        <h1>{this.state.test}</h1>
       </div>
     );
   }
