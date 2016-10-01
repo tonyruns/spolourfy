@@ -23,7 +23,6 @@ const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware);
 const store = createStore(reducer, createStoreWithMiddleware);
 
 const history = syncHistoryWithStore(browserHistory, store);
-
 class App extends Component {
   render() {
     return (
