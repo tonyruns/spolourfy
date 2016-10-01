@@ -30,7 +30,7 @@ router.get('/colortest/:artist', function(req, res, next) {
                   colour: albumColors[0],
                   album: data.body.items[i].images[0].url
               });
-              if (colors.length === 20) {
+              if (colors.length === data.body.items.length) {
                   res.send(colors);
               }
           });
