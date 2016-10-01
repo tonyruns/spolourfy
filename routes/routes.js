@@ -3,7 +3,9 @@ var router = express.Router();
 var _ = require('lodash');
 
 /* GET users listing. */
-router.get('/colortest', function(req, res, next) {
+router.get('/colortest/:artist', function(req, res, next) {
+    var artist = req.params.artist;
+
   var SpotifyWebApi = require('spotify-web-api-node');
   var getColors = require('get-image-colors');
   var spotifyApi = new SpotifyWebApi({
@@ -11,7 +13,13 @@ router.get('/colortest', function(req, res, next) {
       clientSecret: '25862222fd804af1800d6dcd6c7fb12b'
   });
 
-  spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE')
+  spotifyApi.searchArtists(artist)
+  .then(function(data) {
+      return data.body.artists.items[0].id;
+  })
+  .then(artistID => {
+      return spotifyApi.getArtistAlbums(artistID)
+  })
   .then(function(data) {
       // console.log('Artist albums', data.body);
       // console.log(data.body.items[0].images[0].url);

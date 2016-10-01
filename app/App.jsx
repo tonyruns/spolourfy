@@ -8,7 +8,8 @@ class App extends React.Component {
       super(props);
       this.state = {
           test: '',
-          colours: []
+          colours: [],
+          artist: ''
       };
   }
 
@@ -17,15 +18,19 @@ class App extends React.Component {
           test: 'word'
       });
 
-      fetch('/api/colortest')
+      fetch('/api/colortest/' + this.state.artist)
         .then((response) => response.json())
         .then((responseJson) => {
           this.setState({
              colours: responseJson
           });
         });
+  }
 
-
+  updateArtist(evt) {
+      this.setState({
+         artist: evt.target.value
+      });
   }
 
   render() {
@@ -34,6 +39,11 @@ class App extends React.Component {
       <div className="App">
         <h1>{test}</h1>
         <button onClick={this.onClick.bind(this)}>Log in with Spotify</button>
+        <input
+            type="text"
+            value={this.state.artist}
+            onChange={this.updateArtist.bind(this)}
+        />
         <h1>{this.state.test}</h1>
         {this.state.colours.map(function(colour, i) {
             return (
