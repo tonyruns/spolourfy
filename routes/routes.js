@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< 77c9af0a7ef9aa8c9734cfd374c90be83fb14a88
 const Spotify = require('spotify-web-api-node');
 
 // configure the express server
