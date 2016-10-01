@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var _ = require('lodash');
 
 /* GET users listing. */
 router.get('/colortest', function(req, res, next) {
@@ -17,9 +18,9 @@ router.get('/colortest', function(req, res, next) {
       let colors = [];
       for (let i = 0; i < data.body.items.length; i++) {
           getColors(data.body.items[i].images[0].url, function(err, albumColors) {
-              colors[i] = albumColors[0];
-              if (i === data.body.items.length-1) {
-                  res.json(colors);
+              colors.push(albumColors[0]);
+              if (colors.length === 20) {
+                  res.send(colors);
               }
           });
       }
