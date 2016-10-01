@@ -10,6 +10,10 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.svg$/,
+        loaders: ['raw-loader']
+      },
+      {
         test: /\.css$/,
         loader: "style-loader!css-loader",
       },
