@@ -7,7 +7,8 @@ class App extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-          test: ''
+          test: '',
+          colours: []
       };
   }
 
@@ -19,7 +20,9 @@ class App extends React.Component {
       fetch('/api/colortest')
         .then((response) => response.json())
         .then((responseJson) => {
-          console.log(responseJson);
+          this.setState({
+             colours: responseJson
+          });
         });
 
 
@@ -32,6 +35,14 @@ class App extends React.Component {
         <h1>{test}</h1>
         <button onClick={this.onClick.bind(this)}>Log in with Spotify</button>
         <h1>{this.state.test}</h1>
+        {this.state.colours.map(function(colour, i) {
+            return (
+                <div style={{float: 'left'}} key={i}>
+                    <div style={{width: 100, height: 100, backgroundColor: `rgb(${colour.colour._rgb[0]}, ${colour.colour._rgb[1]}, ${colour.colour._rgb[2]})`}} />
+                    <img src={colour.album} style={{width: 100, height:100, }}/>
+                </div>
+            );
+          })}
       </div>
     );
   }
