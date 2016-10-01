@@ -1,23 +1,38 @@
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import Root from './components/Root.jsx';
+import Login from './components/Login.jsx';
+
+// Import stylesheet
 import './App.scss';
 
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+// Sync dispatched route actions to the history
+const reduxRouterMiddleware = syncHistoryWithStore(hashHistory);
+const createStoreWithMiddleware = applyMiddleware(
+    thunk,
+    reduxRouterMiddleware
+)(createStore);
+const store = createStoreWithMiddleware(reducer);
 
-class App extends React.Component {
+class App extends Component {
   render() {
-    var test = "Spolourfy";
-    fetch('/api/hot')
-    .then((response) => response.json())
-    .then((responseJson) => {
-        console.log(responseJson);
-    });
     return (
-      <div className="App">
-        <h1>{test}</h1>
-        <button>Log in with Spotify</button>
-      </div>
+      <Provider store={store}>
+        <Router history={hashHistory}>
+          <Route path="/" component={Root}>
+            <IndexRoute component={Login} />
+          </Route>
+        </Router>
+      </Provider>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+// render
+const rootElement = document.getElementById('app');
+render(<App />, rootElement);
