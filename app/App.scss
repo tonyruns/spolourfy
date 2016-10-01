@@ -1,13 +1,21 @@
+$bg-color: #263238;
+$font: 'Paytone ONe';
+$logo-color: #00E676;
+
 body {
-  background-color: deeppink;
+  background-color: $bg-color;
   color: yellowgreen;
+  font-family: $font, sans-serif;
 
   margin: 0;
   padding: 0;
 }
 
 .App {
+
   h1 {
-    font-size: 420;
+    text-align: center;
+    font-size: 69px;
+    color: $logo-color;
   }
 }
