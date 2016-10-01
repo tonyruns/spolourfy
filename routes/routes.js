@@ -18,7 +18,10 @@ router.get('/colortest', function(req, res, next) {
       let colors = [];
       for (let i = 0; i < data.body.items.length; i++) {
           getColors(data.body.items[i].images[0].url, function(err, albumColors) {
-              colors.push(albumColors[0]);
+              colors.push({
+                  colour: albumColors[0],
+                  album: data.body.items[i].images[0].url
+              });
               if (colors.length === 20) {
                   res.send(colors);
               }
