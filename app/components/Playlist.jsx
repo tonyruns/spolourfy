@@ -14,19 +14,14 @@ export class Playlist extends React.Component {
     const imageUrl = getImageUrl(playlist);
     return (
       <div className="Playlist" onClick={() => this.props.onGetPlaylistTracks()}>
-        <ColorImage src={imageUrl} rgb={rgb} />
+        <ColorImage src={imageUrl} />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const imageUrl = getImageUrl(ownProps.playlist);
-  const colors = state.colors[imageUrl];
-  const rgb = colors ? colors.rgb : null;
-  return {
-    rgb
-  };
+  return {};
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

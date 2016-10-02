@@ -1,6 +1,7 @@
 import './ColorImage.scss';
 
 import * as React from 'react';
+import { connect } from 'react-redux';
 import * as lodash from 'lodash';
 
 /**
@@ -26,4 +27,11 @@ const ColorImage = props => {
   );
 }
 
-export default ColorImage;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    rgb: (state.colors[ownProps.src] || {}).rgb
+  };
+}
+
+const ColorImageContainer = connect(mapStateToProps)(ColorImage);
+export default ColorImageContainer;
