@@ -6,7 +6,7 @@ const Spotify = require('spotify-web-api-node');
 const CLIENT_ID = process.env.client_id || 'ea8305c15cbb43f6ae22874019f923e0';
 const CLIENT_SECRET = process.env.client_secret || '25862222fd804af1800d6dcd6c7fb12b';
 const FRONTEND_URI = process.env.frontend_uri || 'http://localhost:6969';
-const REDIRECT_URI = process.env.redirect_uri || 'http://localhost:3000/callback';
+const REDIRECT_URI = process.env.redirect_uri || 'http://localhost:3000/api/callback';
 const STATE_KEY = 'spotify_auth_state';
 // your application requests authorization
 const scopes = ['user-read-private', 'user-read-email'];

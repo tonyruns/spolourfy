@@ -8,13 +8,14 @@ import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-rou
 import reduce from './reducers/Reducer.jsx';
 import Root from './components/Root.jsx';
 import Login from './components/Login.jsx';
+import User from './components/User.jsx';
 
 // Import stylesheet
 import './App.scss';
 
 // Sync dispatched route actions to the history
 var reducer = combineReducers({
-  reducer: reduce,
+  authentication: reduce,
   routing: routerReducer
 });
 const reduxRouterMiddleware = routerMiddleware(browserHistory);
@@ -30,6 +31,7 @@ class App extends Component {
         <Router history={history}>
           <Route path="/" component={Root}>
             <IndexRoute component={Login} />
+            <Route path="/user/:accessToken/:refreshToken" component={User} />
           </Route>
         </Router>
       </Provider>

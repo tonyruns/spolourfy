@@ -34,10 +34,11 @@ module.exports = {
   plugins: [],
   devServer: {
     proxy: {
-      '/': {
+      '/api': {
         target: 'http://localhost:3000',
         secure: false
       }
-    }
+    },
+    'historyApiFallback': true
   }
 };

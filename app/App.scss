@@ -1,4 +1,5 @@
 $accent-color: #648F00;
+$secondary-text-color: #c1c1c1;
 
 body {
   padding: 0;
@@ -26,6 +27,15 @@ h2 {
   margin-bottom: 20px;
 }
 
+a {
+  &:visited, &:link {
+    color: $secondary-text-color;
+  }
+  &:hover, &:active {
+    color: $accent-color;
+  }
+}
+
 .spotify-login {
   h1 {
     background-color: $accent-color;
@@ -42,5 +52,29 @@ h2 {
     margin-right: auto;
     margin-top: 50px;
     text-align: center;
+  }
+  .user {
+    .user-content {
+      display: flex;
+      align-items: center;
+      img {
+        width: 200px;
+        height: 200px;
+      }
+      ul {
+        li {
+          display: flex;
+          padding: 3px 0px;
+          span:first-child {
+            width: 150px;
+            text-align: right;
+            margin-right: 20px;
+          }
+          span:last-child {
+            flex: 1;
+          }
+        }
+      }
+    }
   }
 }
