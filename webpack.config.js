@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  entry: "./app/App.jsx",
+  entry: ["whatwg-fetch", "./app/App.jsx"],
   output: {
     path: path.join(__dirname, 'public'),
     filename: "bundle.js"
@@ -39,6 +39,6 @@ module.exports = {
         secure: false
       }
     },
-    'historyApiFallback': true
+    historyApiFallback: true
   }
 };
