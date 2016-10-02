@@ -15,8 +15,8 @@ const initialState = {
 };
 
 function reducePlaylistTracks(state = [], action) {
-  let playlists = [].concat(state);
-  let playlist = _.find(playlists, playlist => playlist.id == action.playlistId)
+  let playlists = _.cloneDeep(state);
+  let playlist = _.find(playlists, playlist => playlist.id == action.playlistId);
   if (playlist)
     playlist.tracks = action.data;
   return playlists;

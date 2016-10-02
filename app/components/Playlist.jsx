@@ -14,7 +14,13 @@ export class Playlist extends React.Component {
     const imageUrl = getImageUrl(playlist);
     return (
       <div className="Playlist" onClick={() => this.props.onGetPlaylistTracks()}>
+        <h4>{playlist.name}</h4>
         <ColorImage src={imageUrl} />
+        {
+          playlist.tracks.items
+          ? playlist.tracks.items.map(item => <div key={item.track.id}>{item.track.name}</div>)
+          : null
+        }
       </div>
     );
   }
