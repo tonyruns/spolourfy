@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getMyInfo, setTokens, getMySavedAlbums } from '../actions/Actions.jsx';
+import { getMyInfo, setTokens, getMySavedAlbums } from '../actions/spotifyActions';
 
 /**
  * Our user page
@@ -43,4 +43,4 @@ class User extends Component {
   }
 }
 
-export default connect(state => state.authentication)(User);
+export default connect(state => state.user)(User);

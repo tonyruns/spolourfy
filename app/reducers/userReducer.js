@@ -1,6 +1,6 @@
 import {
   SPOTIFY_TOKENS, SPOTIFY_ME_BEGIN, SPOTIFY_ME_SUCCESS, SPOTIFY_ME_FAILURE, SPOTIFY_ALBUM_BEGIN, SPOTIFY_ALBUM_SUCCESS, SPOTIFY_ALBUM_FAILURE
-} from '../actions/Actions.jsx';
+} from '../actions/spotifyActions';
 
 /** The initial state; no tokens and no user info */
 const initialState = {
@@ -22,7 +22,7 @@ const initialState = {
   },
   albums: {
     loading: null,
-    items: [] 
+    items: []
   }
 };
 
