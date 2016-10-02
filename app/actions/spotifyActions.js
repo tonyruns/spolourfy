@@ -51,7 +51,7 @@ export function getMySavedAlbums() {
 export function getUserPlaylists() {
   return dispatch => {
     dispatch({ type: SPOTIFY_PLAYLIST_BEGIN });
-    spotifyApi.getUserPlaylists()
+    return spotifyApi.getUserPlaylists()
       .then(data => dispatch({ type: SPOTIFY_PLAYLIST_SUCCESS, data }))
       .catch(error => dispatch({ type: SPOTIFY_PLAYLIST_FAILURE, error }));
   }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { getUserPlaylists } from '../actions/spotifyActions';
+import { updatePlaylistColors } from '../actions/colorActions';
 
 import PlaylistGridlist from '../components/PlaylistGridlist';
 
@@ -12,7 +13,6 @@ export class Playlists extends React.Component {
 
   render() {
     const { playlists } = this.props;
-    console.log(playlists);
     return (
       <div className="Playlists">
         <PlaylistGridlist playlists={playlists} />
@@ -30,7 +30,9 @@ const PlaylistsContainer = connect(
   dispatch => {
     return {
       onGetPlaylists: () => {
-        dispatch(getUserPlaylists());
+        dispatch(getUserPlaylists()).then(() => {
+          dispatch(updatePlaylistColors())
+        });
       }
     };
   }

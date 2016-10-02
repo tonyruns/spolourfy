@@ -1,10 +1,10 @@
 const async = require('async');
-const getColors = require('get-image-colors');
+const getImageColors = require('get-image-colors');
 
 class Colors {
   static getColor(url) {
     return new Promise((resolve, reject) => {
-      getColors(url, (err, colors) => {
+      getImageColors(url, (err, colors) => {
         if (!colors)
           return reject();
         let result = null;

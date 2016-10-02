@@ -7,6 +7,7 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux';
 import user from './reducers/userReducer';
 import playlists from './reducers/playlistsReducer';
+import colors from './reducers/colorsReducer';
 import Router from './Router';
 
 // Import stylesheet
@@ -16,6 +17,7 @@ import './App.scss';
 var reducer = combineReducers({
   user,
   playlists,
+  colors,
   routing: routerReducer
 });
 const reduxRouterMiddleware = routerMiddleware(browserHistory);

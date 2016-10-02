@@ -6,6 +6,22 @@ var Colors = require('../modules/colors');
 var SpotifyAuth = require('../modules/spotifyauth');
 
 /**
+ * The /imagecolor endpoint
+ * Accepts an image url, and returns the dominant color.
+ */
+router.post('/imagecolor', (req, res, next) => {
+  const { body } = req;
+  if (_.isEmpty(body))
+    return res.status(400).send({ error: 'empty request body'} );
+  if (!_.isString(body))
+    return res.status(400).send({ error: 'invalid body'} );
+
+  Colors.getColor(body).then(color => {
+    res.send(color);
+  });
+});
+
+/**
  * The /imagecolors endpoint
  * Accepts an array of image urls, and returns the dominant color.
  */
@@ -16,7 +32,7 @@ router.post('/imagecolors', (req, res, next) => {
   if (!_.isArray(body))
     return res.status(400).send({ error: 'invalid body'} );
 
-  Colors.getColors(urls).then(colors => {
+  Colors.getColors(body).then(colors => {
     res.send(colors);
   });
 });

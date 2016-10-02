@@ -1,16 +1,31 @@
 import './Playlist.scss';
 import * as React from 'react';
+import { connect } from 'react-redux';
 
-const imagePlaceholder = <div className="Playlist-image Playlist-image-placeholder" />;
+import ColorImage from './ColorImage';
 
-export default class Playlist extends React.Component {
+const getImageUrl = playlist => playlist.images.length ? playlist.images[0].url : null;
+
+export class Playlist extends React.Component {
   render() {
-    const { playlist } = this.props;
-    const imageUrl = playlist.images.length ? playlist.images[0].url : null;
+    const { playlist, rgb } = this.props;
+    const imageUrl = getImageUrl(playlist);
     return (
       <div className="Playlist">
-        {imageUrl ? <img className="Playlist-image" src={imageUrl} /> : imagePlaceholder}
+        <ColorImage src={imageUrl} rgb={rgb} />
       </div>
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  const imageUrl = getImageUrl(ownProps.playlist);
+  const colors = state.colors[imageUrl];
+  const rgb = colors ? colors.rgb : null;
+  return {
+    rgb
+  };
+}
+
+const PlaylistContainer = connect(mapStateToProps)(Playlist);
+export default PlaylistContainer;
