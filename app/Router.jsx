@@ -11,7 +11,7 @@ export class Router extends React.Component {
   onReceiveTokens(nextState, replace, callback) {
     const { accessToken, refreshToken } = nextState.params;
     this.props.setTokens(accessToken, refreshToken);
-    replace('/user');
+    replace('/albums');
     callback();
   }
 
@@ -22,7 +22,7 @@ export class Router extends React.Component {
         <Route path="/" component={Root}>
           <IndexRoute component={Login} />
           <Route path="/user/:accessToken/:refreshToken" onEnter={this.onReceiveTokens.bind(this)} />
-          <Route path="/user" component={Albums} />
+          <Route path="/albums" component={Albums} />
           <Route path="/playlists" component={Playlists} />
         </Route>
       </ReactRouter>

@@ -12,7 +12,7 @@ const Root = props => {
     <div className="spotify-login">
       <h1>Spolourfy!</h1>
       <Link to="/">Home</Link>
-      <Link to="/user">User</Link>
+      <Link to="/albums">Albums</Link>
       <Link to="/playlists">Playlists</Link>
       <div className="page-content">
         {children}
