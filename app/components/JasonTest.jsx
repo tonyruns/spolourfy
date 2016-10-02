@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './App.scss';
+
 class App extends React.Component {
   constructor(props) {
       super(props);
@@ -13,8 +15,7 @@ class App extends React.Component {
       this.setState({
           test: 'word'
       });
-
-      fetch('/api/colortest')
+      fetch('/api/colortest/men at work')
         .then((response) => response.json())
         .then((responseJson) => {
           this.setState({
@@ -25,7 +26,7 @@ class App extends React.Component {
 
   render() {
     var test = "Spolourfy";
-    var sorted = this.state.colours.sort(function(x, y){return x.hsv[1] - y.hsv[1];});
+    var sorted = this.state.colours.filter(c => c.hsv).sort(function(x, y){return x.hsv[1] - y.hsv[1];});
     console.log(sorted);
     return (
       <div className="App">
@@ -37,7 +38,10 @@ class App extends React.Component {
             return (
                 <div style={{float: 'left'}} key={i}>
                     <div style={{width: 100, height: 100, backgroundColor: `rgb(${albums.rgb[0]}, ${albums.rgb[1]}, ${albums.rgb[2]})`}} />
-                    <img src={albums.url} style={{width: 100, height:100, }}/>
+                    <div style={{position: 'relative'}}>
+                        <div style={{position: 'absolute', left: 0, right: 0, top: 0, height: 100, backgroundColor: `rgba(${albums.rgb[0]}, ${albums.rgb[1]}, ${albums.rgb[2]}, 0.6)` }} />
+                        <img src={albums.url} style={{width: 100, height:100, }}/>
+                    </div>
                 </div>
             );
           })}
