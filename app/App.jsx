@@ -3,12 +3,10 @@ import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux';
 import user from './reducers/userReducer';
-import Root from './components/Root.jsx';
-import Login from './components/Login.jsx';
-import User from './components/User.jsx';
+import Router from './Router';
 
 // Import stylesheet
 import './App.scss';
@@ -27,12 +25,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={history}>
-          <Route path="/" component={Root}>
-            <IndexRoute component={Login} />
-            <Route path="/user/:accessToken/:refreshToken" component={User} />
-          </Route>
-        </Router>
+        <Router history={history} />
       </Provider>
     );
   }

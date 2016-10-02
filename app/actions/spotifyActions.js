@@ -11,7 +11,7 @@ export const SPOTIFY_ALBUM_SUCCESS = "SPOTIFY_ALBUM_SUCCESS";
 export const SPOTIFY_ALBUM_FAILURE = "SPOTIFY_ALBUM_FAILURE";
 
 /** set the app's access and refresh tokens */
-export function setTokens({accessToken, refreshToken}) {
+export function setTokens(accessToken, refreshToken) {
   if (accessToken) {
     spotifyApi.setAccessToken(accessToken);
   }

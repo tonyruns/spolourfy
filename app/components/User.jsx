@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getMyInfo, setTokens, getMySavedAlbums } from '../actions/spotifyActions';
+import { getMyInfo, getMySavedAlbums } from '../actions/spotifyActions';
 
 /**
  * Our user page
@@ -11,8 +11,6 @@ class User extends Component {
   componentDidMount() {
     // params injected via react-router, dispatch injected via connect
     const {dispatch, params} = this.props;
-    const {accessToken, refreshToken} = params;
-    dispatch(setTokens({accessToken, refreshToken}));
     dispatch(getMyInfo());
     dispatch(getMySavedAlbums());
   }
@@ -20,7 +18,7 @@ class User extends Component {
   /** Render the user's info */
   render() {
     console.log(this.props);
-    const { accessToken, refreshToken, user, albums } = this.props;
+    const { user, albums } = this.props;
     const { loading, display_name, images, id, email, external_urls, href, country, product } = user;
     const { items } = albums;
     console.log(":)", items);
