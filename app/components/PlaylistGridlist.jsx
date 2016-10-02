@@ -1,12 +1,20 @@
 import * as React from 'react';
 
+import { connect } from 'react-redux';
+
 import Playlist from './Playlist';
 
+function colorSort(colors, p1, p2) {
+  const [c1, c2] = [colors[p1.images[0].url], colors[p2.images[0].url]];
+  return ((c1 || {}).hsv || [0])[0] - ((c2 || {}).hsv || [0])[0];
+}
+
 const PlaylistGridlist = props => {
-  const { playlists } = props;
+  const { colors, playlists } = props;
+  const items = playlists.items.filter(playlist => playlist.images[0]).sort((p1, p2) => colorSort(colors, p1, p2));
   return (
     <div className="PlaylistGridlist row">
-      {playlists.items.map(playlist => {
+      {items.map(playlist => {
         return (
           <div key={playlist.id} className="col-xs-2">
             <Playlist playlist={playlist} />
@@ -17,4 +25,13 @@ const PlaylistGridlist = props => {
   );
 }
 
-export default PlaylistGridlist;
+const PlaylistGridlistContainer = connect(
+  state => {
+    return {
+      playlists: state.playlists,
+      colors: state.colors
+    }
+  }
+)(PlaylistGridlist);
+
+export default PlaylistGridlistContainer;

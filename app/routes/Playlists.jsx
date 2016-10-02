@@ -15,7 +15,7 @@ export class Playlists extends React.Component {
     const { playlists } = this.props;
     return (
       <div className="Playlists">
-        <PlaylistGridlist playlists={playlists} />
+        <PlaylistGridlist />
       </div>
     );
   }
