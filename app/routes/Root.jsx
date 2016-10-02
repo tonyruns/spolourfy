@@ -14,7 +14,6 @@ const Root = props => {
       <Link to="/">Home</Link>
       <Link to="/user">User</Link>
       <Link to="/playlists">Playlists</Link>
-      <Link to="/jasontest">Jason Test</Link>
       <div className="page-content">
         {children}
       </div>

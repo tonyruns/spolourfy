@@ -9,6 +9,7 @@ import { getMySavedAlbums } from '../actions/spotifyActions';
 class Albums extends Component {
   /** When we mount, get the tokens from react-router and initiate loading the info */
   componentDidMount() {
+    // Get saved albums with the limit and offset
     this.props.onGetSavedAlbums(25, 0);
   }
 
