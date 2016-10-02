@@ -14,18 +14,19 @@ class App extends React.Component {
   }
 
   onClick(evt) {
-      this.setState({
-          test: 'word'
-      });
-      fetch('/api/colortest/men at work')
-        .then((response) => response.json())
-        .then((responseJson) => {
-          this.setState({
-             colours: responseJson
-          });
-        });
-
-
+    this.setState({
+      test: 'word'
+    });
+    fetch('/api/imagecolors', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(['https://i.scdn.co/image/5738d414691b857c9e34344da22b7c64d7f9f7d2'])
+    })
+    .then(body => body.json())
+    .then(json => this.setState({colours: json}));
   }
 
   render() {

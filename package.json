@@ -28,7 +28,8 @@
     "redux-thunk": "^2.1.0",
     "serve-favicon": "~2.3.0",
     "spotify-web-api-js": "^0.19.3",
-    "spotify-web-api-node": "^2.2.0"
+    "spotify-web-api-node": "^2.2.0",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.16.0",
