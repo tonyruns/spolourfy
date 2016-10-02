@@ -1,4 +1,5 @@
 export const COLOR_UPDATE_PLAYLISTS_SUCCESS = 'COLOR_UPDATE_PLAYLISTS_SUCCESS';
+export const ALBUM_COLOURS_SUCCESS = 'ALBUM_COLOURS_SUCCESS';
 
 function post(url, body) {
   return fetch(url, {
@@ -17,6 +18,23 @@ function getColor(url) {
 
 function getColors(urls) {
   return post('/api/imagecolors', urls);
+}
+
+export function getAlbumColours() {
+  return (dispatch, getState) => {
+    const { colors, albums } = getState();
+    const existingUrls = Object.keys(colors);
+    const newUrls = albums.albums.items.map(item => item.track.album.images[0]).filter(image => image).map(image => image.url);
+
+    if (newUrls.length == 0)
+      return;
+
+    return getColors(newUrls)
+      .then(data => {
+        dispatch({ type: ALBUM_COLOURS_SUCCESS, data });
+        return data;
+      });
+  };
 }
 
 export function updatePlaylistColors() {
