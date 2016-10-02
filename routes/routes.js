@@ -5,6 +5,7 @@ const Spotify = require('spotify-web-api-node');
 // configure the express server
 const CLIENT_ID = process.env.client_id || 'ea8305c15cbb43f6ae22874019f923e0';
 const CLIENT_SECRET = process.env.client_secret || '25862222fd804af1800d6dcd6c7fb12b';
+const FRONTEND_URI = process.env.frontend_uri || 'http://localhost:6969';
 const REDIRECT_URI = process.env.redirect_uri || 'http://localhost:3000/callback';
 const STATE_KEY = 'spotify_auth_state';
 // your application requests authorization
@@ -38,13 +39,12 @@ router.get('/login', (_, res) => {
  * does not match, redirect the user to an error page.
  */
 router.get('/callback', (req, res) => {
-  console.log('test');
   const { code, state } = req.query;
   const storedState = req.cookies ? req.cookies[STATE_KEY] : null;
   // first do state validation
   if (state === null || state !== storedState) {
     // if the state is valid, get the authorization code and pass it on to the client
-    res.redirect('/#/error');
+    res.redirect(`${FRONTEND_URI}/error`);
   } else {
     res.clearCookie(STATE_KEY);
 
@@ -62,12 +62,11 @@ router.get('/callback', (req, res) => {
       });
 
       // we can also pass the token to the browser to make requests from there
-      res.redirect(`/#/user/${access_token}/${refresh_token}`);
+      res.redirect(`${FRONTEND_URI}/user/${access_token}/${refresh_token}`);
     }).catch(err => {
-      res.redirect('/#/error');
+      res.redirect(`${FRONTEND_URI}/error`);
     });
   }
 });
-
 
 module.exports = router;
