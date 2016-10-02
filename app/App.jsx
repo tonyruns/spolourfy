@@ -1,4 +1,3 @@
-<<<<<<< 2171f7c5fe17a03f1cd8c3f8dee43c9e54c65db5
 import { Component } from 'react';
 import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
