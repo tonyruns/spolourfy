@@ -16,7 +16,7 @@ class Albums extends Component {
 
   /** Render the user's info */
   render() {
-    const { albums } = this.props;
+    const { albums, colors } = this.props;
     const { loading, items } = albums;
 
     // Indicate we're still loading
@@ -26,7 +26,12 @@ class Albums extends Component {
 
     return (
       <div className="albums">
-          { items.map(album => <img key={album.track.id} src={album.track.album.images[1].url} /> ) }
+        { Object.keys(colors).map(colour => (
+            <div key={colour}>
+                <img src={colors[colour].url} style={{width: 100, height: 100}} />
+                <div style={{width: 100, height: 100, backgroundColor: `rgb(${colors[colour].rgb[0]}, ${colors[colour].rgb[1]}, ${colors[colour].rgb[2]})`}} />
+            </div>
+        )) }
       </div>
     );
   }
