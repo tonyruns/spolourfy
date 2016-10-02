@@ -53,28 +53,4 @@ a {
     margin-top: 50px;
     text-align: center;
   }
-  .user {
-    .user-content {
-      display: flex;
-      align-items: center;
-      img {
-        width: 200px;
-        height: 200px;
-      }
-      ul {
-        li {
-          display: flex;
-          padding: 3px 0px;
-          span:first-child {
-            width: 150px;
-            text-align: right;
-            margin-right: 20px;
-          }
-          span:last-child {
-            flex: 1;
-          }
-        }
-      }
-    }
-  }
 }

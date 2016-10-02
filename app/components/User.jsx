@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getMyInfo, setTokens } from '../actions/Actions.jsx';
+import { getMyInfo, setTokens, getMySavedAlbums } from '../actions/Actions.jsx';
 
 /**
  * Our user page
@@ -14,13 +14,18 @@ class User extends Component {
     const {accessToken, refreshToken} = params;
     dispatch(setTokens({accessToken, refreshToken}));
     dispatch(getMyInfo());
+    dispatch(getMySavedAlbums());
   }
 
   /** Render the user's info */
   render() {
     console.log(this.props);
-    const { accessToken, refreshToken, user } = this.props;
+    const { accessToken, refreshToken, user, albums } = this.props;
     const { loading, display_name, images, id, email, external_urls, href, country, product } = user;
+    const { items } = albums;
+    console.log(":)", items);
+    console.log(":*()", albums);
+
     const imageUrl = images[0] ? images[0].url : "";
     // Indicate we're still loading
     if (loading) {
@@ -28,20 +33,10 @@ class User extends Component {
     }
 
     return (
-      <div className="user">
+      <div className="album">
         <h2>{`Logged in as ${display_name}`}</h2>
-        <div className="user-content">
-          <img src={imageUrl} />
-          <ul>
-            <li><span>Display name</span><span>{display_name}</span></li>
-            <li><span>Id</span><span>{id}</span></li>
-            <li><span>Email</span><span>{email}</span></li>
-            <li><span>Spotify URI</span><span><a href={external_urls.spotify}>{external_urls.spotify}</a></span></li>
-            <li><span>Link</span><span><a href={href}>{href}</a></span></li>
-            <li><span>Profile Image</span><span><a href={imageUrl}>{imageUrl}</a></span></li>
-            <li><span>Country</span><span>{country}</span></li>
-            <li><span>Product</span><span>{product}</span></li>
-          </ul>
+        <div className="album-content">
+          { items.map(album => <img key={album.album.id} src={album.album.images[0].url} /> ) }
         </div>
       </div>
     );
