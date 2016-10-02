@@ -12,6 +12,9 @@ export const SPOTIFY_ALBUM_FAILURE = "SPOTIFY_ALBUM_FAILURE";
 export const SPOTIFY_PLAYLIST_BEGIN = "SPOTIFY_PLAYLIST_BEGIN";
 export const SPOTIFY_PLAYLIST_SUCCESS = "SPOTIFY_PLAYLIST_SUCCESS";
 export const SPOTIFY_PLAYLIST_FAILURE = "SPOTIFY_PLAYLIST_FAILURE";
+export const SPOTIFY_PLAYLIST_TRACKS_BEGIN = "SPOTIFY_PLAYLIST_TRACKS_BEGIN";
+export const SPOTIFY_PLAYLIST_TRACKS_SUCCESS = "SPOTIFY_PLAYLIST_TRACKS_SUCCESS";
+export const SPOTIFY_PLAYLIST_TRACKS_FAILURE = "SPOTIFY_PLAYLIST_TRACKS_FAILURE";
 
 /** set the app's access and refresh tokens */
 export function setTokens(accessToken, refreshToken) {
@@ -54,5 +57,18 @@ export function getUserPlaylists() {
     return spotifyApi.getUserPlaylists()
       .then(data => dispatch({ type: SPOTIFY_PLAYLIST_SUCCESS, data }))
       .catch(error => dispatch({ type: SPOTIFY_PLAYLIST_FAILURE, error }));
+  }
+}
+
+export function getPlaylistTracks(userId, playlistId) {
+  return dispatch => {
+    dispatch({ type: SPOTIFY_PLAYLIST_TRACKS_BEGIN });
+    return spotifyApi.getPlaylistTracks(userId, playlistId)
+      .then(data => dispatch({
+        type: SPOTIFY_PLAYLIST_TRACKS_SUCCESS,
+        playlistId,
+        data
+      }))
+      .catch(error => dispatch({ type: SPOTIFY_PLAYLIST_TRACKS_FAILURE, error }));
   }
 }
