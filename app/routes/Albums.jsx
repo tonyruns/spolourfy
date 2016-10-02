@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMySavedAlbums } from '../actions/spotifyActions';
 import { changeSong } from '../actions/playerActions';
+import { getAlbumColours } from '../actions/colorActions';
 
 /**
  * Our user page
@@ -40,7 +41,8 @@ class Albums extends Component {
 const AlbumsContainer = connect(
   state => {
     return {
-      albums: state.albums.albums
+      albums: state.albums.albums,
+      colors: state.colors
     }
   },
   dispatch => {
@@ -49,7 +51,10 @@ const AlbumsContainer = connect(
         dispatch(changeSong(uri));
       },
       onGetSavedAlbums: (limit, offset) => {
-        dispatch(getMySavedAlbums(limit, offset));
+        dispatch(getMySavedAlbums(limit, offset))
+        .then(() => {
+            dispatch(getAlbumColours());
+        });
       }
     };
   }

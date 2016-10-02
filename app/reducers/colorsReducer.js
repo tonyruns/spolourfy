@@ -1,4 +1,4 @@
-import { COLOR_UPDATE_SUCCESS } from '../actions/colorActions';
+import { COLOR_UPDATE_SUCCESS, ALBUM_COLOURS_SUCCESS } from '../actions/colorActions';
 
 /**
  * Color state shape: {
@@ -14,6 +14,7 @@ const initialState = {};
 export default function reduce(state = initialState, action) {
   switch (action.type) {
     case COLOR_UPDATE_SUCCESS:
+    case ALBUM_COLOURS_SUCCESS:
       let colors = {};
       action.data.forEach(d => colors[d.url] = d);
       return Object.assign({}, state, colors);
