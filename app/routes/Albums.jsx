@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMySavedAlbums } from '../actions/spotifyActions';
+import { getAlbumColours } from '../actions/colorActions';
 
 /**
  * Our user page
@@ -25,7 +26,7 @@ class Albums extends Component {
 
     return (
       <div className="albums">
-          { items.map(album => <img key={album.album.id} src={album.album.images[1].url} /> ) }
+          { items.map(album => <img key={album.track.id} src={album.track.album.images[1].url} /> ) }
       </div>
     );
   }
@@ -34,13 +35,17 @@ class Albums extends Component {
 const AlbumsContainer = connect(
   state => {
     return {
-      albums: state.albums.albums
+      albums: state.albums.albums,
+      colors: state.colors
     }
   },
   dispatch => {
     return {
       onGetSavedAlbums: (limit, offset) => {
-        dispatch(getMySavedAlbums(limit, offset));
+        dispatch(getMySavedAlbums(limit, offset))
+        .then(() => {
+            dispatch(getAlbumColours());
+        });
       }
     };
   }
