@@ -22,6 +22,22 @@ class Colors {
       });
     });
   }
+
+  static getColors(urls) {
+    return new Promise(resolve => {
+      async.parallel(urls.map(url => {
+        return callback => {
+          Colors.getColor(url).then(results => {
+            callback(null, results);
+          }, err => {
+            callback(null, null);
+          });
+        };
+      }), (err, results) => {
+        resolve(results.filter(r => r));
+      });
+    });
+  }
 }
 
 module.exports = Colors;

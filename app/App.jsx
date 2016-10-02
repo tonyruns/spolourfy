@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import * as React from 'react';
 import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -23,7 +23,7 @@ const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware);
 const store = createStore(reducer, createStoreWithMiddleware);
 
 const history = syncHistoryWithStore(browserHistory, store);
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
@@ -39,7 +39,4 @@ class App extends Component {
 }
 
 // render
-const rootElement = document.getElementById('app');
-render(<App />, rootElement);
-
-ReactDOM.render(<App />, document.getElementById('app'));
+render(<App />, document.getElementById('app'));

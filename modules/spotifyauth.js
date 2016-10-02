@@ -1,5 +1,3 @@
-var express = require('express');
-var router = express.Router();
 const Spotify = require('spotify-web-api-node');
 
 // configure the express server
@@ -21,24 +19,13 @@ const spotifyApi = new Spotify({
 /** Generates a random string containing numbers and letters of N characters */
 const generateRandomString = N => (Math.random().toString(36)+Array(N).join('0')).slice(2, N+2);
 
-/**
- * The /login endpoint
- * Redirect the client to the spotify authorize url,
- * Set the user's state in the cookie.
- */
-router.get('/login', (_, res) => {
+function login(res) {
   const state = generateRandomString(16);
   res.cookie(STATE_KEY, state);
   res.redirect(spotifyApi.createAuthorizeURL(scopes, state));
-});
+}
 
-/**
- * The /callback endpoint - hit after the user logs in to spotifyApi
- * Verify that the state we put in the cookie matches the state in the query
- * parameter. Then, if it matches, redirect the user to the user page. If it
- * does not match, redirect the user to an error page.
- */
-router.get('/callback', (req, res) => {
+function callback(req, res) {
   const { code, state } = req.query;
   const storedState = req.cookies ? req.cookies[STATE_KEY] : null;
   // first do state validation
@@ -67,6 +54,9 @@ router.get('/callback', (req, res) => {
       res.redirect(`${FRONTEND_URI}/error`);
     });
   }
-});
+}
 
-module.exports = router;
+module.exports = {
+  login,
+  callback
+}
