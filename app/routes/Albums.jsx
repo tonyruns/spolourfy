@@ -16,22 +16,21 @@ class Albums extends Component {
 
   /** Render the user's info */
   render() {
-    const { albums, colors } = this.props;
+    const { albums } = this.props;
     const { loading, items } = albums;
+
+    let colors = this.props.colors;
 
     // Indicate we're still loading
     if (loading) {
       return <h2>Loading...</h2>;
     }
 
+    colors = _.sortBy(colors, 'hsv[0]');
+
     return (
       <div className="albums">
-        { Object.keys(colors).map(colour => (
-            <div key={colour}>
-                <img src={colors[colour].url} style={{width: 100, height: 100}} />
-                <div style={{width: 100, height: 100, backgroundColor: `rgb(${colors[colour].rgb[0]}, ${colors[colour].rgb[1]}, ${colors[colour].rgb[2]})`}} />
-            </div>
-        )) }
+        { Object.keys(colors).map(colour => <img key={colour} src={colors[colour].url} style={{width: 100, height: 100}} />) }
       </div>
     );
   }
