@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getMyInfo, setTokens, getMySavedAlbums } from '../actions/Actions.jsx';
+import { setTokens, getMySavedAlbums } from '../actions/Actions.js';
 
 /**
  * Our user page
@@ -13,34 +13,27 @@ class User extends Component {
     const {dispatch, params} = this.props;
     const {accessToken, refreshToken} = params;
     dispatch(setTokens({accessToken, refreshToken}));
-    dispatch(getMyInfo());
-    dispatch(getMySavedAlbums());
+    dispatch(getMySavedAlbums(25, 0));
   }
 
   /** Render the user's info */
   render() {
-    console.log(this.props);
-    const { accessToken, refreshToken, user, albums } = this.props;
-    const { loading, display_name, images, id, email, external_urls, href, country, product } = user;
-    const { items } = albums;
-    console.log(":)", items);
-    console.log(":*()", albums);
+    const { accessToken, refreshToken, albums } = this.props;
+    const { loading, items } = albums;
 
-    const imageUrl = images[0] ? images[0].url : "";
     // Indicate we're still loading
     if (loading) {
       return <h2>Loading...</h2>;
     }
 
     return (
-      <div className="album">
-        <h2>{`Logged in as ${display_name}`}</h2>
-        <div className="album-content">
-          { items.map(album => <img key={album.album.id} src={album.album.images[0].url} /> ) }
-        </div>
+      <div className="albums">
+        {items.map(album => {
+          return <img key={album.album.id} src={album.album.images[1].url}/>;
+        })}
       </div>
     );
   }
 }
 
-export default connect(state => state.authentication)(User);
+export default connect(state => state.reducer)(User);
