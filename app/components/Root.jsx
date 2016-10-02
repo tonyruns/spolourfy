@@ -12,7 +12,6 @@ export default class SpotifyLogin extends Component {
       <div className="spotify-login">
         <h1>Spolourfy Login</h1>
         <div className="page-content">
-          <p>This is an example of the Authorization Code flow using routes.</p>
           {children}
         </div>
       </div>

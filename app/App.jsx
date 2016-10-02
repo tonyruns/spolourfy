@@ -3,8 +3,9 @@ import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux';
+import reduce from './reducers/Reducer.jsx';
 import Root from './components/Root.jsx';
 import Login from './components/Login.jsx';
 
@@ -12,18 +13,21 @@ import Login from './components/Login.jsx';
 import './App.scss';
 
 // Sync dispatched route actions to the history
-const reduxRouterMiddleware = syncHistoryWithStore(hashHistory);
-const createStoreWithMiddleware = applyMiddleware(
-    thunk,
-    reduxRouterMiddleware
-)(createStore);
-const store = createStoreWithMiddleware(reducer);
+var reducer = combineReducers({
+  reducer: reduce,
+  routing: routerReducer
+});
+const reduxRouterMiddleware = routerMiddleware(browserHistory);
+const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware);
+const store = createStore(reducer, createStoreWithMiddleware);
+
+const history = syncHistoryWithStore(browserHistory, store);
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={hashHistory}>
+        <Router history={history}>
           <Route path="/" component={Root}>
             <IndexRoute component={Login} />
           </Route>

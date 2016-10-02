@@ -1,8 +1,46 @@
-$bg-color: #263238;
+$accent-color: #648F00;
 
 body {
-  background-color: $bg-color;
+  padding: 0;
+  margin: 0;
+}
+html, body, .spotify-login {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
-.App {
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: "HelveticaNeue-UltraLight", "Helvetica Neue UltraLight", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+h1 {
+  font-size: 2.25em;
+  font-weight: normal;
+}
+h2 {
+  font-size: 1.75em;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.spotify-login {
+  h1 {
+    background-color: $accent-color;
+    color: #fff;
+    padding: 20px 50px;
+  }
+  .page-content {
+    padding: 10px 50px 50px 50px;
+    display: flex;
+    flex-direction: column;
+  }
+  .login {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    text-align: center;
+  }
 }
