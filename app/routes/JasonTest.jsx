@@ -1,16 +1,15 @@
-import './App.scss';
+import './JasonTest.scss';
 
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import * as flexBox from 'flexboxgrid';
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
-      super(props);
-      this.state = {
-          test: '',
-          colours: []
-      };
+    super(props);
+    this.state = {
+      test: '',
+      colours: []
+    };
   }
 
   onClick(evt) {
@@ -58,6 +57,3 @@ const Album = props => {
     </div>
   );
 };
-
-
-ReactDOM.render(<App />, document.getElementById('app'));

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux';
 import user from './reducers/userReducer';
+import playlists from './reducers/playlistsReducer';
 import Router from './Router';
 
 // Import stylesheet
@@ -14,6 +15,7 @@ import './App.scss';
 // Sync dispatched route actions to the history
 var reducer = combineReducers({
   user,
+  playlists,
   routing: routerReducer
 });
 const reduxRouterMiddleware = routerMiddleware(browserHistory);
@@ -21,6 +23,7 @@ const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware);
 const store = createStore(reducer, createStoreWithMiddleware);
 
 const history = syncHistoryWithStore(browserHistory, store);
+
 class App extends React.Component {
   render() {
     return (

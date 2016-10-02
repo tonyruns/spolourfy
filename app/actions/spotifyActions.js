@@ -9,6 +9,9 @@ export const SPOTIFY_ME_FAILURE = 'SPOTIFY_ME_FAILURE';
 export const SPOTIFY_ALBUM_BEGIN = "SPOTIFY_ALBUM_BEGIN";
 export const SPOTIFY_ALBUM_SUCCESS = "SPOTIFY_ALBUM_SUCCESS";
 export const SPOTIFY_ALBUM_FAILURE = "SPOTIFY_ALBUM_FAILURE";
+export const SPOTIFY_PLAYLIST_BEGIN = "SPOTIFY_PLAYLIST_BEGIN";
+export const SPOTIFY_PLAYLIST_SUCCESS = "SPOTIFY_PLAYLIST_SUCCESS";
+export const SPOTIFY_PLAYLIST_FAILURE = "SPOTIFY_PLAYLIST_FAILURE";
 
 /** set the app's access and refresh tokens */
 export function setTokens(accessToken, refreshToken) {
@@ -21,7 +24,7 @@ export function setTokens(accessToken, refreshToken) {
 /* get the user's info from the /me api */
 export function getMyInfo() {
   return dispatch => {
-    dispatch({ type: SPOTIFY_ME_BEGIN});
+    dispatch({ type: SPOTIFY_ME_BEGIN });
     spotifyApi.getMe().then(data => {
       dispatch({ type: SPOTIFY_ME_SUCCESS, data: data });
     }).catch(e => {
@@ -32,7 +35,7 @@ export function getMyInfo() {
 
 export function getMySavedAlbums() {
   return dispatch => {
-    dispatch({ type: SPOTIFY_ALBUM_BEGIN});
+    dispatch({ type: SPOTIFY_ALBUM_BEGIN });
     spotifyApi.getMySavedAlbums({
       limit : 50,
       offset: 0
@@ -42,5 +45,14 @@ export function getMySavedAlbums() {
     }).catch(e => {
       dispatch({ type: SPOTIFY_ALBUM_FAILURE, error: e });
     });
+  }
+}
+
+export function getUserPlaylists() {
+  return dispatch => {
+    dispatch({ type: SPOTIFY_PLAYLIST_BEGIN });
+    spotifyApi.getUserPlaylists()
+      .then(data => dispatch({ type: SPOTIFY_PLAYLIST_SUCCESS, data }))
+      .catch(error => dispatch({ type: SPOTIFY_PLAYLIST_FAILURE, error }));
   }
 }
