@@ -12,8 +12,10 @@ export class Router extends React.Component {
     if(!(SPOTIFY_TOKENS in localStorage || window.location.pathname.startsWith('/user/'))) {
       const { history } = this.props;
       history.push('/');
+    // if(!(SPOTIFY_TOKENS in localStorage)) {
+    //   // replace('/');
     } else {
-      var tokens = JSON.parse(localStorage.getItem(SPOTIFY_TOKENS));
+      var tokens = JSON.parse(localStorage.getItem(SPOTIFY_TOKENS)) || {};
       setTokens(tokens.accessToken, tokens.refreshToken);
     }
   }
