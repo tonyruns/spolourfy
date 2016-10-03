@@ -19,14 +19,18 @@ class Albums extends Component {
     const { albums } = this.props;
     const { loading, items } = albums;
 
+    let colors = this.props.colors;
+
     // Indicate we're still loading
     if (loading) {
       return <h2>Loading...</h2>;
     }
 
+    colors = _.sortBy(colors, 'hsv[0]');
+
     return (
       <div className="albums">
-          { items.map(album => <img key={album.track.id} src={album.track.album.images[1].url} /> ) }
+        { Object.keys(colors).map(colour => <img key={colour} src={colors[colour].url} style={{width: 100, height: 100}} />) }
       </div>
     );
   }

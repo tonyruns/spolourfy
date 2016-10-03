@@ -9,7 +9,7 @@ import * as lodash from 'lodash';
  */
 const ColorImage = props => {
   const { rgb, src } = props;
-  const other = _.omit(props, 'rgb', 'src');
+  const other = _.omit(props, 'rgb', 'src', 'dispatch');
 
   let overlay = null;
   if (rgb) {

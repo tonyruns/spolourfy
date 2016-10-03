@@ -18,6 +18,9 @@ export default function reduce(state = initialState, action) {
       let colors = {};
       action.data.forEach(d => colors[d.url] = d);
       return Object.assign({}, state, colors);
+    case ALBUM_COLOURS_SUCCESS:
+      colors = action.data;
+      return Object.assign({}, state, colors);
     default:
       return state;
   }

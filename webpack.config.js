@@ -31,7 +31,11 @@ module.exports = {
       }
     ]
   },
-  plugins: [],
+  plugins: [
+    new webpack.ProvidePlugin({
+      _: "lodash"
+    })
+  ],
   resolve: {
     extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx"]
   },
