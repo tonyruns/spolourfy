@@ -34,6 +34,8 @@ a {
   font-family: "Mitr";
   padding-right: 20px;
   padding-left: 20px;
+  font-size: 1.5em;
+  background-color: rgb(18, 19, 20);
   text-decoration: none;
   &:visited, &:link {
     color: $secondary-text-color;
@@ -45,6 +47,16 @@ a {
 
 .center-anchors {
     text-align: center;
+    width: 100%;
+}
+
+.title {
+    position: fixed;
+    width: 100%;
+}
+
+.everything-else {
+    padding-top: 153px;
 }
 
 .spotify-login {
