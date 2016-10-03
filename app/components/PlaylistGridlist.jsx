@@ -13,10 +13,10 @@ const PlaylistGridlist = props => {
   const { colors, playlists } = props;
   const items = playlists.items.filter(playlist => playlist.images[0]).sort((p1, p2) => colorSort(colors, p1, p2));
   return (
-    <div className="PlaylistGridlist row">
+    <div className="PlaylistGridlist">
       {items.map(playlist => {
         return (
-          <div key={playlist.id} className="col-xs-2">
+          <div key={playlist.id}>
             <Playlist playlist={playlist} />
           </div>
         )

@@ -8,7 +8,7 @@ export default class Track extends React.Component {
     const imageUrl = track.album.images[0].url;
     return (
       <div className="Track">
-        {track.name}
+        {/*track.name*/}
         <ColorImage src={imageUrl} />
       </div>
     );
