@@ -14,11 +14,9 @@ const Root = props => {
     <div className="spotify-login">
       <div className='title'>
           <h1>SPOLOURFY</h1>
-          <div className='center-anchors'>
-              <Link to="/">Home</Link>
-              <Link to="/albums">Albums</Link>
-              <Link to="/playlists">Playlists</Link>
-          </div>
+          <Link to="/">Home</Link>
+          <Link to="/albums">Albums</Link>
+          <Link to="/playlists">Playlists</Link>
       </div>
       <div className='everything-else'>
           <div className="page-content">
