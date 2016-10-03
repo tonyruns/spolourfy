@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { logOut } from '../actions/spotifyActions';
 
 /**
  * Main app component
@@ -10,7 +11,12 @@ const Root = props => {
   const { children } = props;
   return (
     <div className="spotify-login">
-      <h1>Spolourfy!</h1>
+      <div className="spolourfy-header">
+        <h1>Spolourfy!</h1>
+        <button id="logout-button" className="btn" onClick={logOut}>
+          Log out
+        </button>
+      </div>
       <Link to="/">Home</Link>
       <Link to="/albums">Albums</Link>
       <Link to="/playlists">Playlists</Link>

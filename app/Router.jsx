@@ -10,7 +10,8 @@ import Playlists from './routes/Playlists';
 export class Router extends React.Component {
   componentWillMount() {
     if(!(SPOTIFY_TOKENS in localStorage)) {
-      replace('/');
+      const { history } = this.props;
+      history.pushState(null, '/');
     } else {
       var tokens = JSON.parse(localStorage.getItem(SPOTIFY_TOKENS));
       setTokens(tokens.accessToken, tokens.refreshToken);
