@@ -1,0 +1,60 @@
+@import '../styles/colors';
+
+.Header {
+  background-color: darken($md-grey-900, 5%);
+  height: 64px;
+  padding-left: 16px;
+  display: flex;
+
+  &-title {
+    flex: 1 1 auto;
+    font-size: 42px;
+    line-height: 64px;
+    letter-spacing: 4px;
+
+    a {
+      font-family: 'Mitr', sans-serif;
+      color: $md-green-700;
+      text-decoration: none;
+    }
+  }
+
+  &-links {
+    flex: none;
+
+    a {
+      text-decoration: none;
+      color: $md-green-500;
+      font-size: 16px;
+      line-height: 64px;
+      padding: 0 8px;
+      min-width: 100px;
+      text-transform: uppercase;
+      text-align: center;
+      display: inline-block;
+      letter-spacing: 2px;
+
+      transition: all 0.15s ease;
+    }
+
+    &-tabs, &-logout {
+      display: inline-block;
+    }
+
+    &-tabs {
+      a:hover {
+        color: $md-green-300;
+        background-color: rgba(black, 0.3);
+      }
+    }
+
+    &-logout {
+      margin-left: 32px;
+
+      a:hover {
+        color: $md-green-300;
+        font-weight: 700;
+      }
+    }
+  }
+}

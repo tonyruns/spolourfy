@@ -1,28 +1,19 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { logOut } from '../actions/spotifyActions';
+import './Root.scss';
 
-/**
- * Main app component
- * Has a header and then render's the page content
- */
+import * as React from 'react';
+
+import Header from '../components/Header';
+
 const Root = props => {
-  // injected via react router
-  const { children } = props;
   return (
-    <div className="spotify-login">
-      <div className='title'>
-          <h1>SPOLOURFY</h1>
-          <Link to="/">Home</Link>
-          <Link to="/albums">Albums</Link>
-          <Link to="/playlists">Playlists</Link>
+    <div className="Root">
+      <div className="Root-header">
+        <Header />
       </div>
-      <div className='everything-else'>
-          <div className="page-content">
-              {children}
-          </div>
+      <div className="Root-content">
+        {props.children}
       </div>
     </div>
-  );
+  )
 }
 export default Root;

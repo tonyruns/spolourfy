@@ -1,3 +1,5 @@
+import { push } from 'react-router-redux'
+
 import Spotify from 'spotify-web-api-js';
 const spotifyApi = new Spotify();
 
@@ -22,9 +24,12 @@ export function setTokens(accessToken, refreshToken) {
   spotifyApi.setAccessToken(accessToken);
 }
 
-export function logOut() {
-  localStorage.removeItem(SPOTIFY_TOKENS);
-  spotifyApi.setAccessToken(null);
+export function logout() {
+  return dispatch => {
+    localStorage.removeItem(SPOTIFY_TOKENS);
+    spotifyApi.setAccessToken(null);
+    dispatch(push('/'));
+  };
 }
 
 export function getMySavedAlbums(limit, offset) {

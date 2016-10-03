@@ -12,7 +12,6 @@ import colors from './reducers/colorsReducer';
 import Router from './Router';
 
 // Import stylesheet
-import '../node_modules/flexboxgrid/dist/flexboxgrid.min.css';
 import './App.scss';
 
 // Sync dispatched route actions to the history

@@ -1,0 +1,75 @@
+$accent-color: #388E3C;//#648F00;
+$secondary-text-color: #c1c1c1;
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: rgb(18, 19, 20);
+}
+html, body, .spotify-login {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Mitr', sans-serif;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: normal;
+  text-align: center;
+}
+h2 {
+  font-size: 1.75em;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+a {
+  font-family: 'Mitr';
+  padding-right: 20px;
+  padding-left: 20px;
+  font-size: 1.5em;
+  text-decoration: none;
+  &:visited, &:link {
+    color: $secondary-text-color;
+  }
+  &:hover, &:active {
+    color: $accent-color;
+  }
+}
+
+.title {
+    background-color: rgba(18, 19, 20, 0.9);
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.everything-else {
+    padding-top: 115px;
+}
+
+.spotify-login {
+  h1 {
+    color: $accent-color;
+    padding: 20px 50px;
+  }
+  .page-content {
+    padding: 10px 50px 50px 50px;
+    display: flex;
+    flex-direction: column;
+  }
+  .login {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    text-align: center;
+  }
+}
