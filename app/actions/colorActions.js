@@ -73,11 +73,3 @@ export function updatePlaylistTracksColors(playlistId) {
   }
 }
 
-export function getAlbumColours() {
-  return (dispatch, getState) => {
-    const { albums } = getState();
-    const urls = albums.items.map(item => item.track.album.images[0]).filter(image => image).map(image => image.url);
-    return updateColors(dispatch, getState, urls);
-  };
-}
-
