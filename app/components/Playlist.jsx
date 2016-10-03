@@ -6,7 +6,7 @@ import { getPlaylistTracks } from '../actions/spotifyActions';
 import { updatePlaylistTracksColors } from '../actions/colorActions';
 
 import ColorImage from './ColorImage';
-import Track from './Track';
+import TrackGridlist from './TrackGridlist';
 
 const getImageUrl = playlist => playlist.images.length ? playlist.images[0].url : null;
 
@@ -20,8 +20,8 @@ export class Playlist extends React.Component {
         <ColorImage src={imageUrl} />
         {
           playlist.tracks.items
-          ? playlist.tracks.items.map(item => <Track key={item.track.id} track={item.track}></Track>)
-          : null
+            ? <TrackGridlist tracks={playlist.tracks} />
+            : null
         }
       </div>
     );
