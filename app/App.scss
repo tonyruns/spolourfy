@@ -16,10 +16,11 @@ html, body, .spotify-login {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  font-family: "Meera Inimai", "HelveticaNeue-UltraLight", "Helvetica Neue UltraLight", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Mitr", "HelveticaNeue-UltraLight", "Helvetica Neue UltraLight", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
+
 h1 {
-  font-size: 2.25em;
+  font-size: 3em;
   font-weight: normal;
   text-align: center;
 }
@@ -30,6 +31,10 @@ h2 {
 }
 
 a {
+  font-family: "Mitr";
+  padding-right: 20px;
+  padding-left: 20px;
+  text-decoration: none;
   &:visited, &:link {
     color: $secondary-text-color;
   }
@@ -38,10 +43,14 @@ a {
   }
 }
 
+.center-anchors {
+    text-align: center;
+}
+
 .spotify-login {
   h1 {
-    background-color: $accent-color;
-    color: #fff;
+    background-color: rgb(18, 19, 20);
+    color: $accent-color;
     padding: 20px 50px;
   }
   .page-content {

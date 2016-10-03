@@ -10,10 +10,12 @@ const Root = props => {
   const { children } = props;
   return (
     <div className="spotify-login">
-      <h1>Spolourfy!</h1>
-      <Link to="/">Home</Link>
-      <Link to="/albums">Albums</Link>
-      <Link to="/playlists">Playlists</Link>
+      <h1>SPOLOURFY</h1>
+      <div className='center-anchors'>
+          <Link to="/">Home</Link>
+          <Link to="/albums">Albums</Link>
+          <Link to="/playlists">Playlists</Link>
+      </div>
       <div className="page-content">
         {children}
       </div>
