@@ -24,7 +24,8 @@ export function setTokens(accessToken, refreshToken) {
 export function getMySavedAlbums(limit, offset) {
   return dispatch => {
     dispatch({ type: SPOTIFY_ALBUM_BEGIN });
-    return spotifyApi.getMySavedTracks({
+    return spotifyApi.getPlaylist('tonyruns', '0RngzwxZTs52LVtw6wbqFs', {
+    // return spotifyApi.getMySavedTracks({
       limit : limit,
       offset: offset
     }).then(data => {
