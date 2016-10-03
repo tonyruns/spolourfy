@@ -5,7 +5,6 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux';
-import tokens from './reducers/tokenReducer';
 import albums from './reducers/albumsReducer';
 import playlists from './reducers/playlistsReducer';
 import colors from './reducers/colorsReducer';
@@ -17,7 +16,6 @@ import './App.scss';
 
 // Sync dispatched route actions to the history
 var reducer = combineReducers({
-  tokens,
   albums,
   playlists,
   colors,

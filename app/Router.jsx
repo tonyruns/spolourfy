@@ -1,16 +1,25 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Router as ReactRouter, Route, IndexRoute } from 'react-router';
-import { setTokens } from './actions/spotifyActions';
+import { setTokens, SPOTIFY_TOKENS } from './actions/spotifyActions';
 import Root from './routes/Root';
 import Login from './routes/Login';
 import Albums from './routes/Albums';
 import Playlists from './routes/Playlists';
 
 export class Router extends React.Component {
+  componentWillMount() {
+    if(!(SPOTIFY_TOKENS in localStorage)) {
+      replace('/');
+    } else {
+      var tokens = JSON.parse(localStorage.getItem(SPOTIFY_TOKENS));
+      setTokens(tokens.accessToken, tokens.refreshToken);
+    }
+  }
+
   onReceiveTokens(nextState, replace, callback) {
     const { accessToken, refreshToken } = nextState.params;
-    this.props.setTokens(accessToken, refreshToken);
+    setTokens(accessToken, refreshToken);
     replace('/albums');
     callback();
   }
@@ -35,11 +44,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    setTokens: (accessToken, refreshToken) => {
-      dispatch(setTokens(accessToken, refreshToken));
-    }
-  }
+  return {}
 };
 
 const RouterContainer = connect(mapStateToProps, mapDispatchToProps)(Router);
