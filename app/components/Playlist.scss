@@ -1,16 +1,19 @@
+@import '../styles/colors';
+
 .Playlist {
   margin-bottom: 32px;
 
-  h4 {
+  &-name {
     font-weight: 300;
-    font-size: 24px;
-    color: rgba(black, 0.87);
-    line-height: 32px;
-    margin-bottom: 8px;
-    border-bottom: 1px solid rgba(black, 0.12);
+    font-size: 18px;
+    line-height: 18px;
+    border-bottom: 1px solid $md-light-text-dividers;
+
+    margin-bottom: 16px;
+    padding-bottom: 8px;
   }
 
-  &-image {
+  &-image .ColorImage {
     cursor: pointer;
   }
 }

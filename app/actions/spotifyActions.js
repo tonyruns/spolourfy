@@ -22,12 +22,20 @@ export function setTokens(accessToken, refreshToken) {
     refreshToken
   }));
   spotifyApi.setAccessToken(accessToken);
+  return {
+    type: SPOTIFY_TOKENS,
+    loggedIn: !!accessToken
+  };
 }
 
 export function logout() {
   return dispatch => {
     localStorage.removeItem(SPOTIFY_TOKENS);
     spotifyApi.setAccessToken(null);
+    dispatch({
+      type: SPOTIFY_TOKENS,
+      loggedIn: false
+    });
     dispatch(push('/'));
   };
 }
@@ -47,10 +55,10 @@ export function getMySavedAlbums(limit, offset) {
   }
 }
 
-export function getUserPlaylists() {
+export function getUserPlaylists(userId) {
   return dispatch => {
     dispatch({ type: SPOTIFY_PLAYLIST_BEGIN });
-    return spotifyApi.getUserPlaylists()
+    return spotifyApi.getUserPlaylists(userId)
       .then(data => dispatch({ type: SPOTIFY_PLAYLIST_SUCCESS, data }))
       .catch(error => dispatch({ type: SPOTIFY_PLAYLIST_FAILURE, error }));
   }

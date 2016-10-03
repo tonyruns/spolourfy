@@ -14,13 +14,13 @@ export class Router extends React.Component {
       history.push('/');
     } else {
       var tokens = JSON.parse(localStorage.getItem(SPOTIFY_TOKENS)) || {};
-      setTokens(tokens.accessToken, tokens.refreshToken);
+      this.props.onSetTokens(tokens.accessToken, tokens.refreshToken);
     }
   }
 
   onReceiveTokens(nextState, replace, callback) {
     const { accessToken, refreshToken } = nextState.params;
-    setTokens(accessToken, refreshToken);
+    this.props.onSetTokens(accessToken, refreshToken);
     replace('/albums');
     callback();
   }
@@ -45,7 +45,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    onSetTokens: (accessToken, refreshToken) => {
+      dispatch(setTokens(accessToken, refreshToken));
+    }
+  }
 };
 
 const RouterContainer = connect(mapStateToProps, mapDispatchToProps)(Router);

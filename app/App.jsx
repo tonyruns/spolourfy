@@ -9,6 +9,7 @@ import albums from './reducers/albumsReducer';
 import playlists from './reducers/playlistsReducer';
 import player from './reducers/playerReducer';
 import colors from './reducers/colorsReducer';
+import loggedIn from './reducers/loggedInReducer';
 import Router from './Router';
 
 // Import stylesheet
@@ -20,6 +21,7 @@ var reducer = combineReducers({
   playlists,
   colors,
   player,
+  loggedIn,
   routing: routerReducer
 });
 const reduxRouterMiddleware = routerMiddleware(browserHistory);

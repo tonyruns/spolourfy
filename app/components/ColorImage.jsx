@@ -14,7 +14,7 @@ const ColorImage = props => {
   let overlay = null;
   if (rgb) {
     const overlayStyle = {
-      backgroundColor: `rgba(${rgb.join(', ')}, 0.3)`
+      backgroundColor: `rgba(${rgb.join(', ')}, 0.5)`
     };
     overlay = <div className="ColorImage-overlay" style={overlayStyle} />;
   }

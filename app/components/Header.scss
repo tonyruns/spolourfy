@@ -6,17 +6,19 @@
   padding-left: 16px;
   display: flex;
 
+  &--loggedIn &-title {
+    text-align: left;
+  }
+
   &-title {
     flex: 1 1 auto;
-    font-size: 42px;
+    color: $md-green-a400;
+    font-size: 32px;
     line-height: 64px;
-    letter-spacing: 4px;
-
-    a {
-      font-family: 'Mitr', sans-serif;
-      color: $md-green-700;
-      text-decoration: none;
-    }
+    letter-spacing: 8px;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
   }
 
   &-links {

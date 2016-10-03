@@ -11,7 +11,9 @@ const Root = props => {
         <Header />
       </div>
       <div className="Root-content">
-        {props.children}
+        <div className="Root-child">
+          {props.children}
+        </div>
       </div>
     </div>
   )
