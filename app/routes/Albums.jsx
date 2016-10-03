@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMySavedAlbums } from '../actions/spotifyActions';
+import { changeSong } from '../actions/playerActions';
 
 /**
  * Our user page
@@ -14,6 +15,11 @@ class Albums extends Component {
   }
 
   /** Render the user's info */
+
+  onClick(uri){
+    this.props.onAlbumClick(uri);
+  }
+
   render() {
     const { albums } = this.props;
     const { loading, items } = albums;
@@ -25,7 +31,7 @@ class Albums extends Component {
 
     return (
       <div className="albums">
-          { items.map(album => <img key={album.album.id} src={album.album.images[1].url} /> ) }
+          { items.map(album => <img onClick ={()=>this.onClick(album.album.uri)} key={album.album.id} src={album.album.images[1].url} /> ) }
       </div>
     );
   }
@@ -39,6 +45,9 @@ const AlbumsContainer = connect(
   },
   dispatch => {
     return {
+      onAlbumClick: (uri) => {
+        dispatch(changeSong(uri));
+      },
       onGetSavedAlbums: (limit, offset) => {
         dispatch(getMySavedAlbums(limit, offset));
       }

@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import {
   SPOTIFY_PLAYLIST_SUCCESS,
   SPOTIFY_PLAYLIST_TRACKS_SUCCESS

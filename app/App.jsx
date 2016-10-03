@@ -7,6 +7,7 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux';
 import albums from './reducers/albumsReducer';
 import playlists from './reducers/playlistsReducer';
+import player from './reducers/playerReducer';
 import colors from './reducers/colorsReducer';
 import Router from './Router';
 
@@ -19,6 +20,7 @@ var reducer = combineReducers({
   albums,
   playlists,
   colors,
+  player,
   routing: routerReducer
 });
 const reduxRouterMiddleware = routerMiddleware(browserHistory);
