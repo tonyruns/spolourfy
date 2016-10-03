@@ -36,7 +36,7 @@ class Albums extends Component {
 
     return (
       <div className="albums">
-        { items.map(album => <img onClick ={()=>this.onClick(album.album.uri)} key={album.album.id} src={album.album.images[1].url} /> ) }
+        {/* items.map(album => <img onClick ={()=>this.onClick(album.album.uri)} key={album.album.id} src={album.album.images[1].url} /> ) */}
         { Object.keys(colors).map(colour => (
             <div key={colour}>
                 <img src={colors[colour].url} style={{width: 100, height: 100}} />
