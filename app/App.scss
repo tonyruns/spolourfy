@@ -35,7 +35,6 @@ a {
   padding-right: 20px;
   padding-left: 20px;
   font-size: 1.5em;
-  background-color: rgb(18, 19, 20);
   text-decoration: none;
   &:visited, &:link {
     color: $secondary-text-color;
@@ -45,23 +44,20 @@ a {
   }
 }
 
-.center-anchors {
-    text-align: center;
-    width: 100%;
-}
-
 .title {
+    background-color: rgba(18, 19, 20, 0.9);
     position: fixed;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .everything-else {
-    padding-top: 153px;
+    padding-top: 115px;
 }
 
 .spotify-login {
   h1 {
-    background-color: rgb(18, 19, 20);
     color: $accent-color;
     padding: 20px 50px;
   }
