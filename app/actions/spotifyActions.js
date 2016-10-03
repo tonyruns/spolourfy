@@ -35,9 +35,9 @@ export function getMySavedAlbums(limit, offset) {
       limit : limit,
       offset: offset
     }).then(data => {
-      dispatch({ type: SPOTIFY_ALBUM_SUCCESS, data: data });
+      return dispatch({ type: SPOTIFY_ALBUM_SUCCESS, data: data });
     }).catch(e => {
-      dispatch({ type: SPOTIFY_ALBUM_FAILURE, error: e });
+      return dispatch({ type: SPOTIFY_ALBUM_FAILURE, error: e });
     });
   }
 }
