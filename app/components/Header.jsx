@@ -6,6 +6,8 @@ import { Link } from 'react-router';
 
 import { logout } from '../actions/spotifyActions';
 
+import logo from '../logo2.png';
+
 const Header = props => {
   const { loggedIn, onLogout } = props;
   const links = loggedIn
@@ -23,7 +25,10 @@ const Header = props => {
     : null;
   return (
     <div className={`Header ${loggedIn ? 'Header--loggedIn' : ''}`}>
-      <h1 className="Header-title">Spolourfy</h1>
+      <div className="Header-title">
+        <img className="Header-logo" src={logo} />
+        <h1>polourfy</h1>
+      </div>
       {links}
     </div>
   );

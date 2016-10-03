@@ -10,9 +10,9 @@ const TrackGridlist = props => {
   const items = colorsort(colors, tracks.items, selector);
   return (
     <div className="TrackGridlist row">
-      {items.map(item => {
+      {items.map((item, i) => {
         return (
-          <div key={item.track.id} className="col-xs-6 col-sm-4 col-md-2 col-lg-1">
+          <div key={item.track.id + i} className="col-xs-6 col-sm-4 col-md-2 col-lg-1">
             <Track track={item.track} />
           </div>
         )

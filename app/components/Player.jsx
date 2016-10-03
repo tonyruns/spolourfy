@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-const SonglistPlayer = props => {
+const Player = props => {
   const { uri } = props;
 
   return (
@@ -27,5 +27,5 @@ const mapStateToProps = state => {
   };
 }
 
-const SonglistPlayerContainer = connect(mapStateToProps)(SonglistPlayer);
-export default SonglistPlayerContainer;
+const PlayerContainer = connect(mapStateToProps)(Player);
+export default PlayerContainer;
