@@ -16,8 +16,9 @@ export class Playlist extends React.Component {
     this.props.onPlayPlaylist();
     this.props.onGetPlaylistTracks();
   }
+
   render() {
-    const { playlist, rgb, onGetPlaylistTracks } = this.props;
+    const { playlist } = this.props;
     const imageUrl = getImageUrl(playlist);
     return (
       <div className="Playlist" onClick={() => this.onClick()}>

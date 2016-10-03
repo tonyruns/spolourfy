@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getUserPlaylists } from '../actions/spotifyActions';
 import { updatePlaylistColors } from '../actions/colorActions';
 
+import Player from '../components/Player';
 import PlaylistGridlist from '../components/PlaylistGridlist';
 
 export class Playlists extends React.Component {
@@ -15,6 +16,7 @@ export class Playlists extends React.Component {
     const { playlists } = this.props;
     return (
       <div className="Playlists">
+        <Player />
         <PlaylistGridlist />
       </div>
     );

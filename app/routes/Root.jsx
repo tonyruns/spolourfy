@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { logOut } from '../actions/spotifyActions';
-import SonglistPlayer from '../components/SonglistPlayer';
 
 /**
  * Main app component
