@@ -1,7 +1,6 @@
 import './Playlist.scss';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as _ from 'lodash';
 
 import { getPlaylistTracks } from '../actions/spotifyActions';
 import { updatePlaylistTracksColors } from '../actions/colorActions';
