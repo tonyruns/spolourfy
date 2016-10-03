@@ -12,16 +12,12 @@ const Root = props => {
   const { children } = props;
   return (
     <div className="spotify-login">
-      <div className="spolourfy-header">
-        <h1>Spolourfy!</h1>
-        <button id="logout-button" className="btn" onClick={logOut}>
-          Log out
-        </button>
+      <h1>SPOLOURFY</h1>
+      <div className='center-anchors'>
+          <Link to="/">Home</Link>
+          <Link to="/albums">Albums</Link>
+          <Link to="/playlists">Playlists</Link>
       </div>
-      <Link to="/">Home</Link>
-      <Link to="/albums">Albums</Link>
-      <Link to="/playlists">Playlists</Link>
-      <SonglistPlayer />
       <div className="page-content">
         {children}
       </div>
