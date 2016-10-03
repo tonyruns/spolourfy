@@ -28,7 +28,8 @@ export function getAlbumColours() {
   return (dispatch, getState) => {
     const { colors, albums } = getState();
     const existingUrls = Object.keys(colors);
-    const newUrls = albums.albums.items.map(item => item.track.album.images[0]).filter(image => image).map(image => image.url);
+    console.log(albums);
+    const newUrls = albums.albums.items.map(item => item.track.album.images[1]).filter(image => image).map(image => image.url);
 
     if (newUrls.length == 0)
       return;

@@ -44,6 +44,7 @@ class Albums extends Component {
             </div>
         )) }
         { Object.keys(colors).map(colour => <img key={colour} src={colors[colour].url} style={{width: 100, height: 100}} />) }
+        { Object.keys(colors).map(colour => <img key={colour} src={colors[colour].url} />) }
       </div>
     );
   }

@@ -20,7 +20,7 @@ export default function reduce(state = initialState, action) {
 
     case SPOTIFY_ALBUM_SUCCESS:
       return Object.assign({}, state, {
-        albums: Object.assign({}, state.albums, {items: action.data.items}, {loading: false})
+        albums: Object.assign({}, state.albums, {items: action.data.tracks.items}, {loading: false})
       });
 
     case SPOTIFY_ALBUM_FAILURE:
