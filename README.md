@@ -1,10 +1,6 @@
 # spolourfy
 Colourful spotify
 
-hey
-
-do drugs
-
 # Instructions
 `npm run webpack`: start webpack dev server (localhost:6969)
 
